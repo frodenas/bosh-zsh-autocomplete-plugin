@@ -1,0 +1,160 @@
+#compdef bosh
+# ------------------------------------------------------------------------------
+#
+# Copyright 2015 Ferran Rodenas
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# ------------------------------------------------------------------------------
+#
+# Description
+# -----------
+#
+#  Completion script for Cloud Foundry BOSH CLI (http://bosh.io/docs/bosh-cli.html)
+#
+# ------------------------------------------------------------------------------
+#
+# Authors
+# -------
+#
+#  * Ferran Rodenas (https://github.com/frodenas)
+#
+# ------------------------------------------------------------------------------
+
+# --------------
+# ----- Commands
+# --------------
+
+__version() {
+  # no arguments
+}
+
+# ------------------
+# ----- end Commands
+# ------------------
+
+# -------------------
+# ----- 1st Arguments
+# -------------------
+
+local -a _1st_arguments
+_1st_arguments=(
+  "add blob":"Add a local file as BOSH blob"
+  "alias":"Create an alias"
+  "aliases":"Show the list of available command aliases"
+  "backup":"Backup BOSH"
+  "blobs":"Print current blobs status"
+  "bootstrap":"show bootstrap sub-commands"
+  "bootstrap delete":"Delete existing Micro Bosh (does not delete any bosh deployments running)"
+  "bootstrap deploy":"Configure and bootstrap a micro bosh; or deploy/upgrade existing Micro Bosh"
+  "bootstrap ssh":"SSH into micro bosh"
+  "cancel task":"Cancel task once it reaches the next checkpoint"
+  "cleanup":"Cleanup releases and stemcells"
+  "cleanup ssh":"Cleanup SSH artifacts"
+  "cloud-config":"Download the current cloud config for the director"
+  "cloudcheck":"Cloud consistency check and interactive repair"
+  "complete":"Command completion options"
+  "create release":"Create release (assumes current directory to be a release repository)"
+  "create user":"Create user"
+  "delete deployment":"Delete deployment"
+  "delete release":"Delete release (or a particular release version)"
+  "delete snapshot":"Deletes a snapshot"
+  "delete snapshots":"Deletes all snapshots of a deployment"
+  "delete stemcell":"Delete stemcell"
+  "delete user":"Deletes the user from the director"
+  "deploy":"Deploy according to the currently selected deployment manifest"
+  "deployment":"Get/set current deployment"
+  "deployments":"Show the list of available deployments"
+  "diff":"Diffs your current BOSH deployment configuration against the specified BOSH deployment configuration template"
+  "download manifest":"Download deployment manifest locally"
+  "download public stemcell":"Downloads a stemcell from the public blobstore"
+  "edit deployment":"Edit current deployment manifest"
+  "errands":"List available errands"
+  "export compiled_packages":"Download compiled packages for a specific release and stemcell combination"
+  "export release":"Export the compiled release to a tarball"
+  "finalize release":"Create final release from dev release tarball (assumes current directory to be a release repository)"
+  "generate job":"Generate job template"
+  "generate package":"Generate package template"
+  "get property":"Get deployment property"
+  "help":"Show help message"
+  "import compiled_packages":"Import compiled packages for a specific release and stemcell combination"
+  "init release":"Initialize release directory"
+  "locks":"Show list of current locks"
+  "login":"Log in to currently targeted director. The username and password can also be set in the BOSH_USER and BOSH_PASSWORD environment variables."
+  "logout":"Forget saved credentials for targeted director"
+  "logs":"Fetch job or agent logs from a BOSH-managed VM"
+  "micro":"show micro bosh sub-commands"
+  "micro agent":"Send agent messages"
+  "micro apply":"Apply spec"
+  "micro delete":"Delete micro BOSH instance (including persistent disk)"
+  "micro deploy":"Deploy a micro BOSH instance to the currently selected deployment"
+  "micro deployment":"Choose micro deployment to work with, or display current deployment"
+  "micro deployments":"how the list of deployments"
+  "micro status":"Display micro BOSH deployment status"
+  "properties":"List deployment properties"
+  "public stemcells":"Show the list of publicly available stemcells for download."
+  "recreate":"Recreate job/instance (hard stop + start)"
+  "releases":"Show the list of available releases"
+  "rename job":"Renames a job"
+  "reset release":"Reset dev release"
+  "restart":"Restart job/instance (soft stop + start)"
+  "run errand":"Run specified errand"
+  "scp":"upload/download the source file to the given job"
+  "set property":"Set deployment property"
+  "share release":"upload release tarball to blobstore"
+  "snapshots":"List all snapshots"
+  "ssh":"Execute command or start an interactive session"
+  "start":"Start job/instance"
+  "status":"Show current status (current target, user, deployment info etc)"
+  "stemcells":"Show the list of available stemcells"
+  "stop":"Stop job/instance"
+  "sync blobs":"Sync blob with the blobstore"
+  "take snapshot":"Takes a snapshot"
+  "target":"Choose director to talk to (optionally creating an alias). If no arguments given, show currently targeted director"
+  "targets":"Show the list of available targets"
+  "task":"Show task status and start tracking its output"
+  "tasks":"Show running tasks"
+  "tasks recent":"Show recent tasks"
+  "unset property":"Unset deployment property"
+  "update cloud-config":"Update the current cloud config for the director"
+  "upload blobs":"Upload new and updated blobs to the blobstore"
+  "upload release":"Upload release (release_file can be a local file or a remote URI)"
+  "upload stemcell":"Upload stemcell (stemcell_location can be a local file or a remote URI)"
+  "validate jobs":"Validates all jobs in the current release using current deployment manifest as the source of properties"
+  "verify release":"Verify release"
+  "verify stemcell":"Verify stemcell"
+  "version":"Show version"
+  "vm resurrection":"Enable/Disable resurrection for a given vm"
+  "vms":"List all VMs in a deployment"
+)
+
+# -----------------------
+# ----- end 1st Arguments
+# -----------------------
+
+# ----------
+# ----- Main
+# ----------
+
+_arguments '*:: :->command'
+
+if (( CURRENT == 1 )); then
+  _describe -t commands "bosh command" _1st_arguments
+  return
+fi
+
+local -a _command_args
+case "$words[1]" in
+  version)
+    __version ;;
+esac
