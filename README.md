@@ -5,6 +5,9 @@ This [zsh](http://www.zsh.org/) plugin adds autocompletion options for all [Clou
 ## Installation
 
 * Download the latest version of the [Cloud Foundry BOSH CLI](http://bosh.io/docs/bosh-cli.html)
+* Follow the instructions for your plugin framework of choice:
+
+### Oh-My-Zsh
 
 * Clone this repo to your zsh plugins directory:
 
@@ -17,6 +20,12 @@ $ git clone https://github.com/frodenas/bosh-zsh-autocomplete-plugin.git bosh
 
 ```
 plugins=(... bosh)
+```
+
+### Antigen, Antigen-hs, Antibody
+
+```
+antigen bundle frodenas/bosh-zsh-autocomplete-plugin
 ```
 
 ## Contributing
